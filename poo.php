@@ -10,6 +10,8 @@ class personnage  {
     const FORCE_MOYENNE = 50;
     const FORCE_GRANDE  = 80;
     
+    private static $_texteADire = '<br> fatality !!!<br>';
+
     public function __construct($initforce, $degats)
     {  $this->setForce($initforce);        // initalise la force 
         $this->setDegats($degats);          //initialise les degats
@@ -18,24 +20,25 @@ class personnage  {
 
     public function parler()
     {
-        echo "je suis un personnage";
+        echo self::$_texteADire;
     }
 
 
     public function frapper(personnage $persoAFrapper)
     {
-       echo $persoAFrapper->_degats += $this->_force;
+        $persoAFrapper->_degats += $this->_force;
+        
     }
 
-    public function affExperience()
+    public function affExp()
     {
         $this ->_exp = $this ->_exp +1;
         return  $this ->_exp +1 ;
     }
 
-    public function gagnerExperience()
+    public function gagnerExp()
     {
-        $this->_experience ++; // Incrémente l'expérience
+        $this->_exp ++; // Incrémente l'expérience
     }
     
     public function degats()
@@ -68,7 +71,9 @@ class personnage  {
             trigger_error('La force d\'un personnage ne peut dépasser 100', E_USER_WARNING);
             return;
         }
-                
+        if (in_array($force, [self::FORCE_PETITE, self::FORCE_MOYENNE, self::FORCE_GRANDE])) {
+            $this->_force = $force;
+        }    
         $this->_force = $force;
     }
 

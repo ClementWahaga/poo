@@ -1,5 +1,9 @@
 <?php
+// call files --------------------------------------------------------------------
 require 'poo.php';
+require 'compteur.php';
+
+// instanciation----------------------------------------------------------
 
 $aragorne = new personnage(personnage::FORCE_MOYENNE,2);
 $legolas = new personnage(personnage::FORCE_GRANDE,0);
@@ -21,11 +25,15 @@ $legolas-> frapper($aragorne);
 $legolas-> gagnerExp();
 $legolas->parler();
 
+$compta=new compteur();
 
 ?>
+
+<!--check data--------------------------------------------------------------->
 <pre>
 <?php print_r($aragorne) ?>
 <?php print_r($legolas) ?>
+<?php print_r($compta) ?>
 </pre>
 
 

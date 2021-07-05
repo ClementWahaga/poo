@@ -11,17 +11,21 @@ class perso  {
 
 
     //construtor--------------------------------------->
-    public function __construct($nom,$forcePerso,$xp,$degats)
+    public function __construct($nom,$forcePerso,$xp,$degats/*array $data*/)
     {   
         $this->setNom($nom);
         $this->setForce($forcePerso);
         $this->setXp($xp);
         $this->setDegats($degats);
         $this->_level ++;
+        /*$this->hydrate($data);*/
         
     }
  
     //setter------------------------------------------->
+
+
+    
     public function setId($id) {
         if (!is_int($id)) { // S'il ne s'agit pas d'un nombre entier.
             trigger_error('id du personnage doit être un nombre entier', E_USER_WARNING);
@@ -129,6 +133,21 @@ class perso  {
     public function level()
     {
         return $this -> _level ;
+    }
+
+    public function hydrate(array $data)
+    {
+        foreach ($data as $key => $value)
+        {
+            $method = 'set'.ucfirst($key);
+            if (method_exists($this,$method)){
+                $this->$method($value);
+            }
+        }    
+
+
+
+
     }
 
 }    

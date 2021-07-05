@@ -3,6 +3,8 @@
 //require 'poo.php';
 require 'compteur.php';
 require 'db.php';
+require 'personnage.php';
+
 $dbh = pdo_connect_mysql();
 // instanciation----------------------------------------------------------
 
@@ -32,6 +34,7 @@ echo ' legolas crie '.$legolas->parler().'je suis le meilleur <br>';
 $compta=new compteur();*/
 
 $req= $dbh->query('SELECT * FROM personnages');
+$req->execute();
 while ($perso = $req ->fetch(PDO::FETCH_ASSOC)){
      echo
      $perso['nom'].' a '
@@ -43,12 +46,27 @@ while ($perso = $req ->fetch(PDO::FETCH_ASSOC)){
 }
 ?>
 
+<div  style=" font-size:large; color:brown">
+    <?php
+        $voldmort=new perso('voldemort',10,20,50);
+        echo 
+         $voldmort->nom().' <br> inflige  '
+        .$voldmort->degats().' de degats ,<br> avec une attaque de '
+        .$voldmort->forcePerso().' de force  ,<br> il gagne '
+        .$voldmort->xp(). ' d\'experience ,<br> il augmente au niveau  '
+        .$voldmort->level()
+
+    ?>
+</div>
+
+
+
+
+
+
 <!--check data--------------------------------------------------------------->
 <pre>
-<?php print_r($aragorne) ?>
-<?php print_r($legolas) ?>
-<?php print_r($compta) ?>
-<?php print_r($perso) ?>
+<?php print_r($voldmort) ?>
 </pre>
 
 

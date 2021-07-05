@@ -1,12 +1,12 @@
 <?php
 // call files --------------------------------------------------------------------
-require 'poo.php';
+//require 'poo.php';
 require 'compteur.php';
 require 'db.php';
 $dbh = pdo_connect_mysql();
 // instanciation----------------------------------------------------------
 
-$aragorne = new personnage(personnage::FORCE_MOYENNE,2);
+/*$aragorne = new personnage(personnage::FORCE_MOYENNE,2);
 $legolas = new personnage(personnage::FORCE_GRANDE,0);
 
 //$aragorne-> setForce(10);
@@ -29,15 +29,16 @@ echo ' legolas a frapper legolas avec '.$legolas-> force().' de force <br>';
 
 echo ' legolas crie '.$legolas->parler().'je suis le meilleur <br>';
 
-$compta=new compteur();
+$compta=new compteur();*/
 
 $req= $dbh->query('SELECT * FROM personnages');
 while ($perso = $req ->fetch(PDO::FETCH_ASSOC)){
-    echo $perso['nom'].' a '
+     echo
+     $perso['nom'].' a '
     .$perso['forcePerso'].' de force <br>'
     .$perso['degats'].' de degats <br>'
     .$perso['level'].' de niveau <br>'
-    .$perso['xp'].' experience';
+    .$perso['xp'].' experience <br>';
 
 }
 ?>
@@ -47,6 +48,7 @@ while ($perso = $req ->fetch(PDO::FETCH_ASSOC)){
 <?php print_r($aragorne) ?>
 <?php print_r($legolas) ?>
 <?php print_r($compta) ?>
+<?php print_r($perso) ?>
 </pre>
 
 

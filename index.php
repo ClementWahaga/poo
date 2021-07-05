@@ -21,11 +21,15 @@ echo ' aragorne a ' . $aragorne->force() . ' de force et legolas a ' . $legolas-
                     
 $aragorne-> frapper($legolas);
 $aragorne-> gagnerExp();
+echo ' aragorne a frapper legolas avec '.$aragorne-> force().' de force <br>';
 $legolas-> frapper($aragorne);
 $legolas-> gagnerExp();
-$legolas->parler();
+echo ' legolas a frapper legolas avec '.$legolas-> force().' de force <br>';
+
+echo ' legolas crie '.$legolas->parler().'je suis le meilleur';
 
 $compta=new compteur();
+
 
 ?>
 
